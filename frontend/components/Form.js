@@ -4,13 +4,24 @@ import * as actionCreators from '../state/action-creators'
 
 export function Form(props) {
 
-  const onChange = evt => {
+  const {inputChange, resetForm, postQuiz} = props;
 
+  const onChange = evt => {
+    inputChange(evt.target.id, evt.target.value)
   }
 
   const onSubmit = evt => {
 
   }
+
+  // const handleSubmitAnswer = () => {
+  //   const payload = {
+  //     question_text: props.quiz.question,
+  //     true_answer_text: props.quiz.answers.find(answer => answer.answer_id !== props.selectedAnswer).text,
+  //     false_answer_text: props.quiz.answers.find(answer => answer.answer_id === props.selectedAnswer).text
+  //   }
+  //   postAnswer(payload)
+  // }
 
   return (
     <form id="form" onSubmit={onSubmit}>
