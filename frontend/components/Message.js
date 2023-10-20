@@ -10,7 +10,6 @@ function Message(props) {
 }
 const mapStateToProps = (state) => {
   return {
-    ...state,
     infoMessage: state.infoMessage
   }
 }

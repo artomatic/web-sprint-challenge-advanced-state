@@ -11,9 +11,12 @@ import {
 } from "./action-types"
 
 
-export function moveClockwise() { }
-
-export function moveCounterClockwise() { }
+export function moveClockwise() {
+  return {type: MOVE_CLOCKWISE}
+}
+export function moveCounterClockwise() {
+  return {type: MOVE_COUNTERCLOCKWISE}
+}
 
 export function selectAnswer() { }
 
