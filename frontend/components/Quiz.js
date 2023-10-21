@@ -1,28 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { selectAnswer, setMessage, fetchQuiz, postAnswer } from '../state/action-creators';
+import { selectAnswer, setMessage, fetchQuiz, postAnswer, resetForm} from '../state/action-creators';
 
 function Quiz(props) {
 
-  const {selectAnswer, setMessage, fetchQuiz, postAnswer} = props;
+  const {selectAnswer, setMessage, fetchQuiz, postAnswer, resetForm} = props;
 
   if (!props.quiz) {
     fetchQuiz();
   }
-
   const handleSelect = (evt) => {
     selectAnswer(evt.target.id);
     setMessage(null);
   }
-
   const handleSubmitAnswer = (evt) => {
     const payload = {
       quiz_id: props.quiz.quiz_id,
       answer_id: props.selectedAnswer
     }
-    postAnswer(payload)
+    postAnswer(payload);
   }
-
   return (
     <div id="wrapper">
       {
@@ -47,14 +44,13 @@ function Quiz(props) {
               </div>
             </div>
 
-            <button id="submitAnswerBtn" onClick={handleSubmitAnswer} >Submit answer</button>
+            <button id="submitAnswerBtn" onClick={handleSubmitAnswer} disabled={!props.selectedAnswer}>Submit answer</button>
           </>
         ) : 'Loading next quiz...'
       }
     </div>
   )
 }
-
 const mapStateToProps = (state) => {
   return {
     quiz: state.quiz,
@@ -62,5 +58,4 @@ const mapStateToProps = (state) => {
     infoMessage: state.infoMessage
   }
 }
-
-export default connect(mapStateToProps, {selectAnswer, fetchQuiz, postAnswer, setMessage})(Quiz);
+export default connect(mapStateToProps, {selectAnswer, fetchQuiz, postAnswer, setMessage, resetForm})(Quiz);

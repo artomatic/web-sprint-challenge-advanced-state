@@ -45,7 +45,6 @@ const initialMessageState = ''
 function infoMessage(state = initialMessageState, action) {
   switch (action.type) {
     case SET_INFO_MESSAGE:
-      console.log(action.payload)
       return action.payload;
   }
   return state
